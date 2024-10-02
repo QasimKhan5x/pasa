@@ -17,3 +17,4 @@ datasets
 ipykernel
 ipywidgets
 streamlit
+jupyterlab>3.0
