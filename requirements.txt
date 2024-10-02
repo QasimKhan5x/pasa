@@ -13,8 +13,8 @@ langchain-ollama
 langchain-nvidia-ai-endpoints
 langgraph
 qdrant-client
-datasets
 ipykernel
 ipywidgets
 streamlit
 jupyterlab>3.0
+langchain-openai==0.2.1

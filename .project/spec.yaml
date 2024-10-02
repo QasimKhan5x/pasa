@@ -100,11 +100,40 @@ execution:
     logfile_path: ""
     timeout_seconds: 120
     icon_url: ""
+  - name: Chatbot
+    type: custom
+    class: webapp
+    start_command: cd code/langchain-chatbot && PROXY_PREFIX=$PROXY_PREFIX streamlit
+      run Home.py
+    health_check_command: curl -f "http://localhost:8501/"
+    stop_command: pkill -f '^streamlit run Home.py'
+    user_msg: ""
+    logfile_path: ""
+    timeout_seconds: 60
+    icon_url: ""
+    webapp_options:
+      autolaunch: true
+      port: "8501"
+      proxy:
+        trim_prefix: false
+      url: http://localhost:8501/
   resources:
     gpu:
       requested: 0
-    sharedMemoryMB: 0
-  secrets: []
+    sharedMemoryMB: 4096
+  secrets:
+  - variable: OPENAI_API_KEY
+    description: ""
+  - variable: JINA_API_KEY
+    description: ""
+  - variable: HUGGINGFACE_TOKEN
+    description: ""
+  - variable: NVIDIA_API_KEY
+    description: ""
+  - variable: NEO4J_PASSWORD
+    description: ""
+  - variable: QDRANT_API_KEY
+    description: ""
   mounts:
   - type: project
     target: /project/
