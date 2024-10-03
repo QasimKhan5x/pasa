@@ -84,7 +84,7 @@ How to Classify:
     Identify intent based on the descriptions and indicators.
     Match the message to the most appropriate category.
 Output Format: <output>category_name</output>
-If No Match: return <output>no_class</output>.
+If No Match: return <output>noclass</output>.
 </instructions>
 
 <input>{input}</input>

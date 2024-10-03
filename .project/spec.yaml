@@ -105,7 +105,7 @@ execution:
     class: webapp
     start_command: cd code/chatbot && PROXY_PREFIX=$PROXY_PREFIX streamlit run Home.py
     health_check_command: curl -f "http://localhost:8501/"
-    stop_command: pkill -f '^streamlit run Home.py'
+    stop_command: pkill -f streamlit
     user_msg: ""
     logfile_path: ""
     timeout_seconds: 60
