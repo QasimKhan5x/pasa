@@ -114,7 +114,7 @@ execution:
       autolaunch: true
       port: "8501"
       proxy:
-        trim_prefix: false
+        trim_prefix: true
       url: http://localhost:8501/
   resources:
     gpu:
