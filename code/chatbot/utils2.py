@@ -181,9 +181,7 @@ class HybridSearcher:
         metadata = [hit.metadata for hit in search_result]
         return metadata
 
-
 subcategory_searcher = HybridSearcher(collection_name="subcategories")
 summary_searcher = HybridSearcher(collection_name="summaries")
 usecase_searcher = HybridSearcher(collection_name="usecases")
 keyword_searcher = HybridSearcher(collection_name="keywords")
-subcategory_searcher = HybridSearcher(collection_name="subcategories")
