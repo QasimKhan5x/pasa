@@ -1,17 +1,22 @@
 from typing import List
-from ast import literal_eval
 
 from langchain_core.prompts import PromptTemplate
-import pandas as pd
 from pydantic import BaseModel, Field, field_validator
 
 from utils2 import llm_precise, graphdb
 
 prompt_template = PromptTemplate(
     template="""
-You are a product assistant. The conversation history contains details about multiple products shown to the user. The user can refer to a product by mentioning the product title directly or by referring to the position of the product.
-Based on the user's query, return the integer index of the product they are referring to.
-Just return a single integer representing the index of the product.
+You are a product assistant helping users find information about products you have previously shown them. 
+The conversation history contains the details of your interaction with the user, including a list of products you presented.
+
+The user may refer to a product either by its title or by its position in the list (e.g., "the first product", "second item"). 
+Your task is to determine which product the user is referring to in their query and return its corresponding integer index in the list of products you provided earlier.
+
+**Instructions:**
+- Analyze the conversation history to identify the list of products displayed to the user.
+- Interpret the user's query to determine which product they are asking about.
+- Return a single integer representing the 0-based index of the referred product in the original list.
 
 <history>{history}</history>
 <query>{query}</query>
@@ -75,25 +80,16 @@ product_reference_list_chain = prompt_template | llm_precise.with_structured_out
 )
 
 
-def load_products(path):
-    products_df = pd.read_csv(path)
-    products_df["categories"] = products_df["categories"].apply(literal_eval)
-    products_df["details"] = products_df["details"].apply(literal_eval)
-    products_df["description"] = products_df["description"].apply(literal_eval)
-    products_df["features"] = products_df["features"].apply(literal_eval)
-    return products_df
-
-
-products = load_products("/project/data/products_0.001.csv")
-
 
 def get_product_explanation(product_id):
-    product = products[products["parent_asin"] == product_id]
-    title = product["title"].values[0]
-    rating_info = f"Rating: {product['average_rating'].values[0]}/5 from {product['rating_number'].values[0]} reviews"
-    features = "\n".join(product["features"].values[0])
-    description = "\n".join(product["description"].values[0])
-    attributes = ";".join({f"{k}={v}" for k, v in product["details"].items()})
+    product = graphdb.run_query(f"MATCH (p:Product) WHERE p.product_id = '{product_id}' RETURN p")[0]['p']
+    title = product["title"]
+    rating_info = f"Rating: {product['average_rating']}/5 from {product['rating_number']} reviews"
+    features = product["features"]
+    description = product["description"]
+    attribute_nodes = graphdb.run_query(f"MATCH (a:Attribute)<-[:HAS_ATTRIBUTE]-(p:Product) WHERE p.product_id = '{product_id}' RETURN a")
+    attributes = [node["a"] for node in attribute_nodes]
+    attributes = "\n".join([f"{attr['name']}: {attr['value']}" for attr in attributes])
     total_description = (
         f"{title}\n{rating_info}\n{features}\n{description}\n{attributes}"
     )

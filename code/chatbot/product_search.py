@@ -139,5 +139,5 @@ def product_search(state: OverallState) -> MessagesState:
     response = product_search_chain.invoke(
         {"query": create_user_query(entities), "product_details": product_details}
     )
-    output_message = format_product_ranking_list(response)
-    return {"product_ids": returned_product_ids, "messages": AIMessage(output_message)}
+    output_message, final_product_ids = format_product_ranking_list(response)
+    return {"product_ids": final_product_ids, "messages": AIMessage(output_message)}

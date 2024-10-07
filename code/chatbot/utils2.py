@@ -98,6 +98,7 @@ def create_amazon_link(product_id):
 
 def format_product_ranking_list(ranking) -> str:
     output_message = []
+    keep_ids = []
     for product in ranking:
         if product.keep:
             product_id = product.product_id
@@ -108,8 +109,9 @@ def format_product_ranking_list(ranking) -> str:
             output_message.append(
                 f"[{product_title}]({create_amazon_link(product_id)}): {explanation}"
             )
+            keep_ids.append(product_id)
     output_message = "\n\n".join(output_message)
-    return output_message
+    return output_message, keep_ids
 
 
 def rerank(query, documents, limit=5, model="jina-colbert-v2"):

@@ -1,6 +1,6 @@
 from langgraph.graph import START, StateGraph, MessagesState, END
 from langgraph.checkpoint.memory import MemorySaver
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 from utils2 import OverallState
 from intent import get_intent
@@ -28,10 +28,18 @@ def bye(state: OverallState) -> MessagesState:
 
 def product_reference(state: OverallState) -> OverallState:
     user_input = state["messages"][-1]
+    # remove metadata from the last 3 messages
+    history = []
+    for message in state["messages"][-3:-1]:
+        if isinstance(message, HumanMessage):
+            history.append(HumanMessage(message.content))
+        else:
+            history.append(AIMessage(message.content))
     # last 3 messages are the product details
     product_index = product_reference_chain.invoke(
-        {"history": state["messages"][-5:-1], "query": user_input}
+        {"history": history, "query": user_input}
     ).product_index
+    
     if product_index == -1:
         if "product_index" in state and state["product_index"] is not None:
             product_index = state["product_index"]
@@ -39,9 +47,16 @@ def product_reference(state: OverallState) -> OverallState:
 
 def product_list_reference(state: OverallState) -> OverallState:
     user_input = state["messages"][-1]
+    # remove metadata from the last 3 messages
+    history = []
+    for message in state["messages"][-3:-1]:
+        if isinstance(message, HumanMessage):
+            history.append(HumanMessage(message.content))
+        else:
+            history.append(AIMessage(message.content))
     # last 3 messages are the product details
     product_indices = product_reference_list_chain.invoke(
-        {"history": state["messages"][-5:-1], "query": user_input}
+        {"history": history, "query": user_input}
     ).product_references
     if product_indices == []:
         if "product_indices" in state and state["product_indices"] is not None:
@@ -50,7 +65,8 @@ def product_list_reference(state: OverallState) -> OverallState:
 
 def information_retrieval(state: OverallState) -> MessagesState:
     query = state["messages"][-1].content
-    product_id = state["product_ids"][state["product_index"]]
+    product_index = state["product_index"]
+    product_id = state["product_ids"][product_index]
     response = explain_product(query, product_id)
     return {"messages": response}
 

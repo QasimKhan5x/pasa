@@ -162,6 +162,6 @@ def recommendation(state: OverallState) -> MessagesState:
     product_ranking = recommendation_chain.invoke(
         {"query": query, "products": product_details}
     )
-    output_message = format_product_ranking_list(product_ranking)
+    output_message, final_product_ids = format_product_ranking_list(product_ranking)
 
     return {"product_ids": final_product_ids, "messages": AIMessage(output_message)}
