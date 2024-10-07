@@ -118,7 +118,7 @@ def explain_reviews(query, product_id):
             f"{review['title']}\nRating: {review['rating']}\n{review['text']}"
         )
     reviews_str = "\n\n".join(formatted_reviews)
-    response = llm_precise(
+    response = llm_precise.invoke(
         f"Answer the user query based on the product reviews provided.\n{reviews_str}\n{query}"
     )
     return response
