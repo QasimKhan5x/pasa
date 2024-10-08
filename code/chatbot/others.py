@@ -125,7 +125,7 @@ def compare_products(query, product_ids):
         get_product_explanation(product_id) for product_id in product_ids
     ]
     product_descriptions = "\n\n".join(product_explanations)
-    response = llm_precise(
+    response = llm_precise.invoke(
         f"Compare the products based on the details provided and answer the user query. Format your answer as a Markdown table.\n{product_descriptions}\n{query}"
     )
     return response

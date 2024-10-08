@@ -103,7 +103,7 @@ execution:
   - name: Chatbot
     type: custom
     class: webapp
-    start_command: cd code/chatbot && PROXY_PREFIX=$PROXY_PREFIX streamlit run Home.py
+    start_command: cd code/chatbot && PROXY_PREFIX=$PROXY_PREFIX streamlit run app.py
     health_check_command: curl -f "http://localhost:8501/"
     stop_command: pkill -f streamlit
     user_msg: ""

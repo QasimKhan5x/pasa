@@ -12,7 +12,7 @@ This project is supposed to be run using [NVIDIA AI Workbench](https://docs.nvid
 
 1. Install `python>=3.11` and `requirements.txt`. Optinally, install Ollama and `mistral-nemo` to run the `kg_generation.ipynb` notebook.
 2. Setup environment variables in a `.env` file.
-3. Run the streamlit app using `cd chatbot && streamlit run Home.py`.
+3. Run the streamlit app using `cd chatbot && streamlit run app.py`.
 
 ### API Keys (ONLY FOR JUDGING)
 
