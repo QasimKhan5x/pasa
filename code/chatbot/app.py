@@ -1,3 +1,9 @@
+# app.py
+
+# Streamlit page configuration
+# title: Homepage
+# icon: 🏠
+
 import streamlit as st
 
 st.set_page_config(
@@ -8,7 +14,7 @@ st.set_page_config(
 
 st.header("Personalization-Aware ECommerce Shopping Assistant")
 st.write("""
-[![view source code ](https://img.shields.io/badge/GitHub%20Repository-gray?logo=github)](https://github.com/QasimKhan5x/Personalization-Aware-ECommerce-Shopping-Assistant)
+[![view source code ](https://img.shields.io/badge/GitHub%20Repository-gray?logo=github)](https://github.com/QasimKhan5x/pasa)
 [![linkedin ](https://img.shields.io/badge/Qasim%20Khan-blue?logo=linkedin&color=gray)](https://www.linkedin.com/in/qasimkh/)
 """)
 st.write("""
