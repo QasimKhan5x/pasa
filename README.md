@@ -1,4 +1,5 @@
-# Project Name
+# Personalization Aware eCommerce Shopping Assistant
+
 This project is a streamlit chatbot that implements a generative recommender system. The chatbot is designed to help users find Amazon beauty and personal care products. It is implemented using LangChain, LangGraph, Qdrant, and Neo4j.
 
 
