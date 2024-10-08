@@ -11,7 +11,7 @@ Refer to the [blog post](./blog_post.md) for a detailed description of the proje
 
 This project is supposed to be run using [NVIDIA AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/overview/introduction.html). You can clone the GitHub URL of this project in the AI Workbench and run the project there. You just need to set up the environment and launch the chatbot from the applications section. Otherwise, you can run the project locally by following the steps below.
 
-1. Install `python>=3.11` and `requirements.txt`. Optinally, install Ollama and `mistral-nemo` to run the `kg_generation.ipynb` notebook.
+1. Install `python>=3.11` and `requirements.txt`. Optionally, install Ollama and `mistral-nemo` to run the `kg_generation.ipynb` notebook.
 2. Setup environment variables in a `.env` file.
 3. Run the streamlit app using `cd chatbot && streamlit run app.py`.
 
