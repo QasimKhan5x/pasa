@@ -11,7 +11,12 @@ Refer to the [blog post](./blog_post.md) for a detailed description of the proje
 
 ## Getting Started
 
-This project is supposed to be run using [NVIDIA AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/overview/introduction.html). You can clone the GitHub URL of this project in the AI Workbench and run the project there. You just need to set up the environment and launch the chatbot from the applications section. Otherwise, you can run the project locally by following the steps below.
+This project is supposed to be run using [NVIDIA AI Workbench](https://docs.nvidia.com/ai-workbench/user-guide/latest/overview/introduction.html). It is designed to be run on any target system.
+
+You can clone the GitHub URL of this project in the AI Workbench and build the project there. You also need to add API keys in the secrets section. Please use the API keys in the section at the bottom of this document. Build the environment in AI Workbench and once it is done, simply launch the chatbot from the applications section. It will automatically open up in your default browser. 
+
+
+Without NVIDIA AI Workbench, you can run the project locally by following the steps below.
 
 1. Install `python>=3.11` and `requirements.txt`. Optionally, install Ollama and `mistral-nemo` to run the `kg_generation.ipynb` notebook.
 2. Setup environment variables in a `.env` file.
