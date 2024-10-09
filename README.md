@@ -7,7 +7,7 @@ This project is a streamlit chatbot that implements a generative recommender sys
 
 ## Description
 
-Refer to the [blog post](./blog_post.md) for a detailed description of the project.
+Refer to the [blog post](./blog_post.md) for a detailed description of the project, including an explanation of the features and functionality of the application.
 
 ## Getting Started
 
