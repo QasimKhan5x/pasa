@@ -35,6 +35,8 @@ llm_precise = ChatOpenAI(
 graphdb = Neo4jConnection(
     uri=os.environ["NEO4J_URI"], user="neo4j", password=os.environ["NEO4J_PASSWORD"], db="neo4j"
 )
+if not graphdb.is_alive:
+    raise Exception("Neo4j Instance is not running. Please start the Neo4j Instance.")
 
 
 class OverallState(MessagesState):

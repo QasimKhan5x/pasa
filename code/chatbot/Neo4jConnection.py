@@ -6,11 +6,14 @@ class Neo4jConnection:
         self.__user = user
         self.__password = password
         self.__db = db
+        self.is_alive = False
         try:
             with GraphDatabase.driver(self.__uri, auth=(self.__user, self.__password)) as driver:
-                driver.verify_connectivity()       
+                driver.verify_connectivity()    
         except Exception as e:
             print("Failed to create the driver:", e)
+        else:
+            self.is_alive = True
 
     def query(self, query, **parameters):
         response = None
