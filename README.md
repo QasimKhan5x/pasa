@@ -1,6 +1,6 @@
 # Personalization Aware eCommerce Shopping Assistant
 
-⭐️ Honorable Mention in [HackAI - Dell and NVIDIA Challenge](https://hackaichallenge.devpost.com/) with over 4500 participants and 111 projects!
+⭐️ Honorable Mention in [HackAI - Dell and NVIDIA Challenge](https://hackaichallenge.devpost.com/) with over 4500 participants and 111 projects! Check the [Devpost page](https://devpost.com/software/personalization-aware-e-commerce-shopping-assistant) for a demo video.
 
 This project is a streamlit chatbot that implements a generative recommender system. The chatbot is designed to help users find Amazon beauty and personal care products. It is implemented using LangChain, LangGraph, Qdrant, and Neo4j.
 
